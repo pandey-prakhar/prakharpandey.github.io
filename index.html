@@ -14,19 +14,20 @@
         --bg-color: #0d1117; 
         --text-color: #e6edf3;
         --accent-color: #58a6ff; 
-        --card-bg: rgba(22, 27, 34, 0.85);
+        --card-bg: rgba(22, 27, 34, 0.85); /* Glassmorphism transparency */
         --border-color: #30363d;
     }
 
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Courier New', monospace;
+        font-family: 'Courier New', monospace; /* Monospace for the dev feel */
         color: var(--text-color);
         background-color: var(--bg-color);
         overflow-x: hidden;
     }
 
+    /* 3D Background Canvas */
     #vanta-canvas {
         position: fixed;
         top: 0;
@@ -44,6 +45,7 @@
         z-index: 1;
     }
 
+    /* Header Section */
     header {
         text-align: center;
         margin-bottom: 3rem;
@@ -55,8 +57,19 @@
     }
 
     h1 { font-size: 3rem; margin: 0; color: #fff; }
-    .type-wrap { font-size: 1.5rem; color: var(--accent-color); margin-top: 10px; height: 30px; }
+    
+    .type-wrap { 
+        font-size: 1.5rem; 
+        color: var(--accent-color); 
+        margin-top: 10px; 
+        height: 30px; 
+    }
 
+    /* Links */
+    a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+    a:hover { text-decoration: underline; text-shadow: 0 0 5px var(--accent-color); }
+
+    /* Stats Section */
     .stats-section {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -85,6 +98,7 @@
         border-radius: 6px;
     }
 
+    /* Projects Section */
     .content-box {
         background: var(--card-bg);
         padding: 2rem;
@@ -93,10 +107,6 @@
         margin-bottom: 2rem;
     }
 
-    a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
-    a:hover { text-decoration: underline; text-shadow: 0 0 5px var(--accent-color); }
-
-    /* Project Card Styling */
     .project-card {
         background: var(--card-bg);
         border: 1px solid var(--border-color);
@@ -130,7 +140,7 @@
         <p style="margin-top: 15px; color: #8b949e;">
             <a href="https://github.com/pandey-prakhar" target="_blank">[ GitHub ]</a> &nbsp;|&nbsp; 
             <a href="https://linkedin.com/in/iam-prakhar" target="_blank">[ LinkedIn ]</a> &nbsp;|&nbsp; 
-            <a href="mailto:prakharpandey1198@gmail.com">[ Email ]</a>
+            <a href="mailto:prakharpandey1198@gmail.com">prakharpandey1198@gmail.com</a>
         </p>
     </header>
 
@@ -155,7 +165,7 @@
     </section>
 
     <section class="content-box">
-        <h2 style="border-bottom: 1px solid #30363d; padding-bottom: 10px;">> System.out.print("Projects");</h2>
+        <h2 style="border-bottom: 1px solid #30363d; padding-bottom: 10px;">&gt; System.out.println("Projects");</h2>
 
         <div id="projects-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 1.5rem;">
             <div class="project-card">
@@ -190,7 +200,7 @@
         loop: true
     });
 
-    // Vanta.js Background
+    // Vanta.js 3D Background Config
     VANTA.NET({
         el: "#vanta-canvas",
         mouseControls: true,
@@ -215,14 +225,20 @@
             let count = 0;
             const target = data.totalSolved || 0;
             const counterEl = document.getElementById('leetcode-count');
-
+            
+            // Animation for the counter
             const interval = setInterval(() => {
                 count++;
+                if (target > 100) count += 4; // Speed up if number is big
+                if (count >= target) {
+                    count = target;
+                    clearInterval(interval);
+                }
                 counterEl.textContent = count;
-                if(count >= target) clearInterval(interval);
             }, 20);
         } catch (err) {
             console.error("Failed to fetch LeetCode data:", err);
+            document.getElementById('leetcode-count').textContent = "N/A";
         }
     }
     fetchLeetCodeSolved();

@@ -3,201 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prakhar Pandey | Backend Engineer</title>
+    <title>Prakhar Pandey | Backend Elite</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
     <style>
-        /* --- CSS VARIABLES (Easy to change colors here) --- */
+        /* --- CORE STYLES --- */
         :root {
-            --bg-color: #0d1117; /* GitHub Dark Background */
-            --text-color: #c9d1d9;
-            --accent-color: #58a6ff; /* Blue for links/highlights */
-            --card-bg: #161b22;
+            --bg-color: #0d1117; 
+            --text-color: #e6edf3;
+            --accent-color: #58a6ff; 
+            --card-bg: rgba(22, 27, 34, 0.85); /* Glassmorphism */
             --border-color: #30363d;
-            --font-mono: 'Courier New', Courier, monospace;
         }
 
-        /* --- GLOBAL STYLES --- */
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
+            font-family: 'Courier New', monospace; /* Hacker font */
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
         }
 
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        /* Fullscreen 3D Background Container */
+        #vanta-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1; /* Puts it behind everything */
+        }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 4rem 1rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* --- HEADER & HERO --- */
+        /* --- HEADER & TYPING EFFECT --- */
         header {
-            margin-bottom: 4rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        .subtitle {
-            font-family: var(--font-mono);
-            color: #8b949e;
-            font-size: 1.1rem;
-        }
-
-        /* --- SECTIONS --- */
-        section { margin-bottom: 4rem; }
-        
-        h2 {
-            font-size: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-        }
-
-        /* --- SKILLS GRID --- */
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: rgba(56, 139, 253, 0.15);
-            color: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            border: 1px solid rgba(56, 139, 253, 0.4);
-        }
-
-        /* --- PROJECTS LIST --- */
-        .project-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.2s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-color);
-        }
-
-        .project-title {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .tech-stack {
-            font-size: 0.85rem;
-            color: #8b949e;
-            font-family: var(--font-mono);
-            margin-top: 1rem;
-        }
-
-        /* --- FOOTER --- */
-        footer {
             text-align: center;
-            font-size: 0.9rem;
-            color: #8b949e;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            backdrop-filter: blur(5px); /* Blurs the background behind */
         }
 
-        /* --- MOBILE TWEAKS --- */
-        @media (max-width: 600px) {
+        h1 { font-size: 3rem; margin: 0; color: #fff; }
+        
+        .type-wrap {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            margin-top: 10px;
+            height: 30px; /* Prevent layout shift */
+        }
+
+        /* --- STATS GRID (The "Flex" Section) --- */
+        .stats-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 15px rgba(88, 166, 255, 0.3);
+        }
+
+        img.stat-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        /* --- PROJECTS & LINKS --- */
+        .content-box {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+        }
+
+        a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; text-shadow: 0 0 5px var(--accent-color); }
+
+        /* Mobile Fix */
+        @media (max-width: 768px) {
+            .stats-section { grid-template-columns: 1fr; }
             h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
+    <div id="vanta-canvas"></div>
+
     <div class="container">
+        
         <header>
             <h1>Prakhar Pandey</h1>
-            <div class="subtitle">Software Engineer | Backend Specialist</div>
-            <p style="margin-top: 1rem; color: #8b949e;">
-                Building scalable solutions with Java, Spring Boot, and Cloud technologies. 
-                Focused on clean architecture and high-performance systems.
-            </p>
-            <div style="margin-top: 1rem;">
-                <a href="https://github.com/pandey-prakhar" target="_blank">GitHub</a> &bull; 
-                <a href="https://linkedin.com/in/iam-prakhar" target="_blank">LinkedIn</a> &bull; 
-                <a href="mailto:prakharpandey1198@gmail.com">Email Me</a>
+            <div class="type-wrap">
+                <span id="typed-output"></span>
             </div>
+            <p style="margin-top: 15px; color: #8b949e;">
+                <a href="https://github.com/pandey-prakhar" target="_blank">[ GitHub ]</a> &nbsp;|&nbsp; 
+                <a href="https://linkedin.com/in/iam-prakhar" target="_blank">[ LinkedIn ]</a> &nbsp;|&nbsp; 
+                <a href="mailto:prakharpandey1198@gmail.com">[ Email ]</a>
+            </p>
         </header>
 
-        <section>
-            <h2>Technical Arsenal</h2>
-            <div class="skills-grid">
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Spring Boot</span>
-                <span class="skill-tag">Microservices</span>
-                <span class="skill-tag">SQL (MySQL/PostgreSQL)</span>
-                <span class="skill-tag">Data Structures (DSA)</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">React (Basic)</span>
-                <span class="skill-tag">Git</span>
+        <section class="stats-section">
+            
+            <div class="stat-card">
+                <h3 style="color: #ffa116;">LeetCode Grind</h3>
+                <img class="stat-img" 
+                     src="https://leetcode-stats-card.vercel.app/prakhar1999?theme=dark&font=baloo&extension=activity" 
+                     alt="LeetCode Stats">
+                <br>
+                <small style="color: #8b949e;">Live data from LeetCode</small>
             </div>
+
+            <div class="stat-card">
+                <h3 style="color: #58a6ff;">GitHub Activity</h3>
+                <img class="stat-img" 
+                     src="https://github-readme-stats.vercel.app/api?username=pandey-prakhar&show_icons=true&theme=dark&hide_border=true&bg_color=00000000" 
+                     alt="GitHub Stats">
+                
+                <img class="stat-img" style="margin-top: 10px;"
+                     src="https://github-readme-streak-stats.herokuapp.com/?user=pandey-prakhar&theme=dark&hide_border=true&bg_color=00000000" 
+                     alt="GitHub Streak">
+            </div>
+
         </section>
 
-        <section>
-            <h2>Featured Projects</h2>
-
-            <div class="project-card">
-                <a href="https://github.com/pandey-prakhar" class="project-title">Scalable Backend System (Example)</a>
-                <p>Designed a microservices architecture handling high-concurrency requests. Optimized database queries reducing latency by 40%.</p>
-                <div class="tech-stack">Stack: Java, Spring Boot, Kafka, Redis</div>
-            </div>
-
-            <div class="project-card">
-                <a href="https://github.com/pandey-prakhar" class="project-title">API Gateway Service</a>
-                <p>Built a secure API Gateway to manage routing, authentication, and rate limiting for internal services.</p>
-                <div class="tech-stack">Stack: Spring Cloud, OAuth2, Docker</div>
-            </div>
-
-            <div class="project-card">
-                <a href="https://github.com/pandey-prakhar" class="project-title">Data Processing Pipeline</a>
-                <p>Automated data ingestion pipeline that processes large datasets and generates real-time analytics reports.</p>
-                <div class="tech-stack">Stack: Python, SQL, AWS Lambda</div>
+        <section class="content-box">
+            <h2 style="border-bottom: 1px solid #30363d; padding-bottom: 10px;">> System.out.print("Projects");</h2>
+            
+            <div style="margin-top: 1.5rem;">
+                <h3>📂 Scalable Backend Architecture</h3>
+                <p style="color: #c9d1d9;">Designed a high-throughput microservices system using Spring Boot and Kafka. Handled 10k+ concurrent requests with 99.9% uptime.</p>
+                <p style="font-size: 0.9rem; color: #8b949e;">Stack: Java, Spring Boot, Redis, Docker</p>
             </div>
             
-            <p style="font-size: 0.9rem;">
-                <a href="https://github.com/pandey-prakhar">View all projects on GitHub &rarr;</a>
-            </p>
+            <div style="margin-top: 1.5rem;">
+                <h3>📂 Portfolio Infrastructure</h3>
+                <p style="color: #c9d1d9;">You are looking at it. Hosted on GitHub Pages with custom domain routing and 3D visualization integration.</p>
+                <p style="font-size: 0.9rem; color: #8b949e;">Stack: HTML5, Vanta.js, Cloudflare DNS</p>
+            </div>
         </section>
 
-        <section>
-            <h2>Get In Touch</h2>
-            <p>
-                I am currently working as a Software Engineer. I am always open to discussing backend architecture, 
-                system design, or new opportunities.
-            </p>
-            <a href="mailto:prakharpandey1198@gmail.com" style="font-size: 1.1rem; font-weight: bold;">prakharpandey1198@gmail.com</a>
-        </section>
-
-        <footer>
-            &copy; 2025 Prakhar Pandey. Hosted on GitHub Pages.
-        </footer>
     </div>
 
+    <script>
+        // 1. Activate Typing Effect
+        var typed = new Typed('#typed-output', {
+            strings: [
+                "Software Engineer.",
+                "Backend Specialist.",
+                "Java & Spring Boot Expert.",
+                "System Designer."
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true
+        });
+
+        // 2. Activate 3D Background (Vanta Net Effect)
+        VANTA.NET({
+            el: "#vanta-canvas",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x58a6ff,       /* The connection line color (Blue) */
+            backgroundColor: 0x0d1117, /* Matches GitHub Dark BG */
+            points: 12.00,
+            maxDistance: 22.00,
+            spacing: 18.00
+        })
+    </script>
 </body>
 </html>

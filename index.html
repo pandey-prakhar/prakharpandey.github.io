@@ -323,38 +323,38 @@
 
     /* Timeline */
     .timeline {
-        position: relative;
-        margin-left: 10px;
-        padding-left: 24px;
-        margin-bottom: 3rem;
-    }
-    .timeline::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 4px;
-        bottom: 0;
-        width: 1px;
-        background: linear-gradient(to bottom, rgba(75,85,99,0.9), rgba(31,41,55,0.2));
-    }
-    .timeline-item {
-        position: relative;
-        margin-bottom: 2.2rem;
-    }
-    .timeline-dot {
-        position: absolute;
-        left: -6px;
-        top: 6px;
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: var(--accent-color);
-        box-shadow: 0 0 12px rgba(56,189,248,0.7);
-    }
-    .timeline-dot.secondary {
-        background: #4b5563;
-        box-shadow: none;
-    }
+    position: relative;
+    margin-left: 20px;
+    padding-left: 60px;   /* Increased space so text never overlaps */
+    margin-bottom: 3rem;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 20px;            /* Move line left */
+    top: 4px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(75,85,99,0.9), rgba(31,41,55,0.2));
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 14px;             /* Align dot with the line */
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 12px rgba(56,189,248,0.7);
+}
+
+.timeline-dot.secondary {
+    background: #4b5563;
+    box-shadow: none;
+}
+
     .role { font-size: 1rem; font-weight: 600; color: #f9fafb; }
     .company {
         color: var(--accent-color);
@@ -710,12 +710,11 @@
                 <p style="font-size:0.88rem; color:var(--secondary-text); margin-top:0.4rem;">
                     Actively practicing data structures and algorithms on LeetCode, focusing on
                     <span class="hero-highlight">arrays, graphs, DP and system-design oriented problems</span>.
-                    Exact problem counts can be updated here manually whenever you prefer.
                 </p>
                 <div class="metrics">
                     <div>
                         <div class="metric-label">Username</div>
-                        <div class="metric-value">prakhar1999</div>
+                        <div class="metric-value">prakharpandey1198</div>
                     </div>
                     <div>
                         <div class="metric-label">Focus</div>

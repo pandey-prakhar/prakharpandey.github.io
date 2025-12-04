@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakhar Pandey | Backend Engineer</title>
+    <style>
+        /* --- CSS VARIABLES (Easy to change colors here) --- */
+        :root {
+            --bg-color: #0d1117; /* GitHub Dark Background */
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff; /* Blue for links/highlights */
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* --- HEADER & HERO --- */
+        header {
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+
+        /* --- SECTIONS --- */
+        section { margin-bottom: 4rem; }
+        
+        h2 {
+            font-size: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+        }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: rgba(56, 139, 253, 0.15);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            border: 1px solid rgba(56, 139, 253, 0.4);
+        }
+
+        /* --- PROJECTS LIST --- */
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .project-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .tech-stack {
+            font-size: 0.85rem;
+            color: #8b949e;
+            font-family: var(--font-mono);
+            margin-top: 1rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #8b949e;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- MOBILE TWEAKS --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Prakhar Pandey</h1>
+            <div class="subtitle">Software Engineer | Backend Specialist</div>
+            <p style="margin-top: 1rem; color: #8b949e;">
+                Building scalable solutions with Java, Spring Boot, and Cloud technologies. 
+                Focused on clean architecture and high-performance systems.
+            </p>
+            <div style="margin-top: 1rem;">
+                <a href="https://github.com/pandey-prakhar" target="_blank">GitHub</a> &bull; 
+                <a href="https://linkedin.com/in/iam-prakhar" target="_blank">LinkedIn</a> &bull; 
+                <a href="mailto:prakharpandey1198@gmail.com">Email Me</a>
+            </div>
+        </header>
+
+        <section>
+            <h2>Technical Arsenal</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Spring Boot</span>
+                <span class="skill-tag">Microservices</span>
+                <span class="skill-tag">SQL (MySQL/PostgreSQL)</span>
+                <span class="skill-tag">Data Structures (DSA)</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">React (Basic)</span>
+                <span class="skill-tag">Git</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>Featured Projects</h2>
+
+            <div class="project-card">
+                <a href="https://github.com/pandey-prakhar" class="project-title">Scalable Backend System (Example)</a>
+                <p>Designed a microservices architecture handling high-concurrency requests. Optimized database queries reducing latency by 40%.</p>
+                <div class="tech-stack">Stack: Java, Spring Boot, Kafka, Redis</div>
+            </div>
+
+            <div class="project-card">
+                <a href="https://github.com/pandey-prakhar" class="project-title">API Gateway Service</a>
+                <p>Built a secure API Gateway to manage routing, authentication, and rate limiting for internal services.</p>
+                <div class="tech-stack">Stack: Spring Cloud, OAuth2, Docker</div>
+            </div>
+
+            <div class="project-card">
+                <a href="https://github.com/pandey-prakhar" class="project-title">Data Processing Pipeline</a>
+                <p>Automated data ingestion pipeline that processes large datasets and generates real-time analytics reports.</p>
+                <div class="tech-stack">Stack: Python, SQL, AWS Lambda</div>
+            </div>
+            
+            <p style="font-size: 0.9rem;">
+                <a href="https://github.com/pandey-prakhar">View all projects on GitHub &rarr;</a>
+            </p>
+        </section>
+
+        <section>
+            <h2>Get In Touch</h2>
+            <p>
+                I am currently working as a Software Engineer. I am always open to discussing backend architecture, 
+                system design, or new opportunities.
+            </p>
+            <a href="mailto:prakharpandey1198@gmail.com" style="font-size: 1.1rem; font-weight: bold;">prakharpandey1198@gmail.com</a>
+        </section>
+
+        <footer>
+            &copy; 2025 Prakhar Pandey. Hosted on GitHub Pages.
+        </footer>
+    </div>
+
+</body>
+</html>
